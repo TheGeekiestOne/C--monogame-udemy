@@ -12,7 +12,14 @@ namespace shootingGallery
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public Game1()
+        //Declare variables here
+        Texture2D target_Sprite;
+        Texture2D crosshairs_Sprite;
+        Texture2D background_Sprite;
+
+
+
+        public Game1() //game constructor 
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -35,10 +42,14 @@ namespace shootingGallery
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
         /// </summary>
-        protected override void LoadContent()
+        protected override void LoadContent()//load all things into game such as textures and images
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            target_Sprite = Content.Load<Texture2D>("target");
+            crosshairs_Sprite = Content.Load<Texture2D>("crosshairs");
+            background_Sprite = Content.Load<Texture2D>("sky");
 
             // TODO: use this.Content to load your game content here
         }
@@ -57,6 +68,8 @@ namespace shootingGallery
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// 
+
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -71,11 +84,23 @@ namespace shootingGallery
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// 
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+
             // TODO: Add your drawing code here
+
+            spriteBatch.Begin();
+
+            //Start drawing
+
+
+            spriteBatch.Draw(target_Sprite, new Vector2(0, 0), Color.White);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
