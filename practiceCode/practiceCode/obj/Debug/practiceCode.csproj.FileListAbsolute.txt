@@ -1,0 +1,7 @@
+C:\Users\The Geekiest One\Google Drive\GitHub\C#-monogame-udemy\practiceCode\practiceCode\bin\Debug\practiceCode.exe.config
+C:\Users\The Geekiest One\Google Drive\GitHub\C#-monogame-udemy\practiceCode\practiceCode\bin\Debug\practiceCode.exe
+C:\Users\The Geekiest One\Google Drive\GitHub\C#-monogame-udemy\practiceCode\practiceCode\bin\Debug\practiceCode.pdb
+C:\Users\The Geekiest One\Google Drive\GitHub\C#-monogame-udemy\practiceCode\practiceCode\obj\Debug\practiceCode.csprojAssemblyReference.cache
+C:\Users\The Geekiest One\Google Drive\GitHub\C#-monogame-udemy\practiceCode\practiceCode\obj\Debug\practiceCode.csproj.CoreCompileInputs.cache
+C:\Users\The Geekiest One\Google Drive\GitHub\C#-monogame-udemy\practiceCode\practiceCode\obj\Debug\practiceCode.exe
+C:\Users\The Geekiest One\Google Drive\GitHub\C#-monogame-udemy\practiceCode\practiceCode\obj\Debug\practiceCode.pdb
