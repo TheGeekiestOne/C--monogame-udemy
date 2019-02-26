@@ -39,6 +39,7 @@ namespace practiceCode
             Console.WriteLine(num);
             */
 
+            /*
             int myNumber = -5;
             int checkValue = -15;
 
@@ -56,10 +57,37 @@ namespace practiceCode
             {
                 myNumber = -1;
             }
+            */
+
+            int myNum = 1;
+
+            /*
+            int[] myArray = new int[5];
+            myArray[0] = 8;
+            myArray[1] = 6;
+            */
+
+            int[] myArray = { 8, 6, 7, 5, 3, 0, 9 };
 
 
-            Console.WriteLine(myNumber);
-            Console.WriteLine(absolute);
+
+            int myValue = 0;
+            int forLoopVal = 0;
+            
+            while (myValue < 10)
+            {
+                myValue ++;
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                forLoopVal += 10;
+            }
+
+            //Console.WriteLine(myNumber);
+            Console.WriteLine(myArray[2]);
+            Console.WriteLine(forLoopVal);
+            //Console.WriteLine(absolute);
             Console.ReadKey();
         }
     }
