@@ -11,13 +11,16 @@ namespace Spaceship
         SpriteBatch spriteBatch;
 
         Texture2D ship_Sprite;
-        Texture2D asterod_Sprite;
+        Texture2D asteroid_Sprite;
         Texture2D space_Sprite;
 
         SpriteFont gameFont;
         SpriteFont timerFont;
 
         Ship player = new Ship();
+
+        //test asteroid
+        Asteroid testAsteroid = new Asteroid(250);
 
         public Game1()
         {
@@ -45,7 +48,7 @@ namespace Spaceship
 
 
             ship_Sprite = Content.Load<Texture2D>("ship");
-            asterod_Sprite = Content.Load<Texture2D>("asteroid");
+            asteroid_Sprite = Content.Load<Texture2D>("asteroid");
             space_Sprite = Content.Load<Texture2D>("space");
 
             gameFont = Content.Load<SpriteFont>("spaceFont");
@@ -67,6 +70,8 @@ namespace Spaceship
             player.shipUpdate(gameTime);
             //player.postition.X++;
 
+            testAsteroid.asteroidUpdate(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -82,6 +87,8 @@ namespace Spaceship
             //spriteBatch.Draw(ship_Sprite, player.postition, Color.White);
             spriteBatch.Draw(ship_Sprite, new Vector2(player.postition.X - 34, player.postition.Y - 50), Color.White);
 
+            //draw test asteroid
+            spriteBatch.Draw(asteroid_Sprite, new Vector2(testAsteroid.postion.X - testAsteroid.radius, testAsteroid.postion.Y - testAsteroid.radius), Color.White);
             spriteBatch.End();
 
 

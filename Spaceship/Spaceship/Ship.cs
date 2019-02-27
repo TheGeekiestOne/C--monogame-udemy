@@ -14,7 +14,7 @@ namespace Spaceship
     {
 
         public Vector2 postition = new Vector2(100, 100);
-        public int speed = 3;
+        public int speed = 180;
 
         public void shipUpdate(GameTime gameTime) //void doesnt return anything
         {
@@ -25,23 +25,23 @@ namespace Spaceship
 
             if (kState.IsKeyDown(Keys.Right))
             {
-                postition.X += speed * dt; //move at 1 pixel at a time 
+                postition.X += speed * dt; // ++ =>move at 1 pixel at a time 
 
             }
 
             if (kState.IsKeyDown(Keys.Left))
             {
-                postition.X -= speed;
+                postition.X -= speed * dt;
             }
 
             if (kState.IsKeyDown(Keys.Down))
             {
-                postition.Y += speed;
+                postition.Y += speed * dt;
             }
 
             if (kState.IsKeyDown(Keys.Up))
             {
-                postition.Y -= speed;
+                postition.Y -= speed * dt;
             }
         }
 
