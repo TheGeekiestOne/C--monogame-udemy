@@ -20,7 +20,9 @@ namespace Spaceship
         Ship player = new Ship();
 
         //test asteroid
-        Asteroid testAsteroid = new Asteroid(250);
+        //Asteroid testAsteroid = new Asteroid(250);
+
+        Controller gameController = new Controller();
 
         public Game1()
         {
@@ -70,7 +72,14 @@ namespace Spaceship
             player.shipUpdate(gameTime);
             //player.postition.X++;
 
-            testAsteroid.asteroidUpdate(gameTime);
+            //testAsteroid.asteroidUpdate(gameTime);
+            gameController.conUpdate(gameTime);
+        
+            for (int i = 0; i < gameController.asteroids.Count; i++)
+            {
+                gameController.asteroids[i].asteroidUpdate(gameTime);
+
+            }
 
             base.Update(gameTime);
         }
@@ -88,7 +97,16 @@ namespace Spaceship
             spriteBatch.Draw(ship_Sprite, new Vector2(player.postition.X - 34, player.postition.Y - 50), Color.White);
 
             //draw test asteroid
-            spriteBatch.Draw(asteroid_Sprite, new Vector2(testAsteroid.postion.X - testAsteroid.radius, testAsteroid.postion.Y - testAsteroid.radius), Color.White);
+            //spriteBatch.Draw(asteroid_Sprite, new Vector2(testAsteroid.postion.X - testAsteroid.radius, testAsteroid.postion.Y - testAsteroid.radius), Color.White);
+
+            for (int i = 0; i < gameController.asteroids.Count; i++)
+            {
+                Vector2 tempPos = gameController.asteroids[i].postion;
+                int tempRadius = gameController.asteroids[i].radius;
+                spriteBatch.Draw(asteroid_Sprite, new Vector2(tempPos.X - tempRadius, tempPos.Y - tempRadius), Color.White);
+
+            }
+
             spriteBatch.End();
 
 

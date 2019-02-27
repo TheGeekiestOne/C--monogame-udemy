@@ -14,13 +14,18 @@ namespace Spaceship
     class Asteroid
     {
 
-        public Vector2 postion = new Vector2(600, 600);
-        public int speed = 220;
+        public Vector2 postion;// = new Vector2(600, 300);
+        public int speed;
         public int radius = 59;
+
+        static Random rand = new Random();
 
         public Asteroid(int newSpeed)
         {
             speed = newSpeed;
+
+            //Random rand = new Random();
+            postion = new Vector2(1280 + radius, rand.Next(0, 721));
         }
 
         public void asteroidUpdate(GameTime gameTime)
