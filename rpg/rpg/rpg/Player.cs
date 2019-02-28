@@ -18,6 +18,7 @@ namespace rpg
         private int health = 3;
         private int speed = 200;
         private Dir direction = Dir.Down;
+        private bool isMoving = false;
 
         public int Health
         {
@@ -55,47 +56,59 @@ namespace rpg
             KeyboardState kState = Keyboard.GetState();
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            isMoving = false;
+
             if (kState.IsKeyDown(Keys.Right))
             {
-                direction = Dir.Right
+                direction = Dir.Right;
+                isMoving = true;
             }
 
             if (kState.IsKeyDown(Keys.Left))
             {
                 direction = Dir.Left;
+                isMoving = true;
             }
 
             if (kState.IsKeyDown(Keys.Up))
             {
                 direction = Dir.Up;
+                isMoving = true;
             }
 
             if (kState.IsKeyDown(Keys.Down))
             {
                 direction = Dir.Down;
+                isMoving = true;
             }
 
-            switch(direction)
+            
+
+            if (isMoving)
             {
-                case Dir.Right:
-                    position.X += speed * dt;
-                    break;
+                switch (direction)
+                {
+                    case Dir.Right:
+                        position.X += speed * dt;
+                        break;
 
-                case Dir.Left:
-                    position.X -= speed * dt;
-                    break;
+                    case Dir.Left:
+                        position.X -= speed * dt;
+                        break;
 
-                case Dir.Up:
-                    position.Y -= speed * dt;
-                    break;
+                    case Dir.Up:
+                        position.Y -= speed * dt;
+                        break;
 
-                case Dir.Down:
-                    position.Y += speed * dt;
-                    break;
+                    case Dir.Down:
+                        position.Y += speed * dt;
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
+                }
             }
+
         }
 
     }
