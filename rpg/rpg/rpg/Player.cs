@@ -21,6 +21,7 @@ namespace rpg
         private bool isMoving = false;
 
         public AnimatedSprite anim;
+        public AnimatedSprite[] animations = new AnimatedSprite[4];
 
         public int Health
         {
@@ -58,7 +59,32 @@ namespace rpg
             KeyboardState kState = Keyboard.GetState();
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            anim.Update(gameTime);
+            anim = animations[(int)direction];
+
+            /* //USE ENUM TO SIMPLIFY THE BELOW!
+            switch(direction)
+            {
+                case Dir.Down:
+                    anim = animations[0];
+                    break;
+                case Dir.Up:
+                    anim = animations[1];
+                    break;
+                case Dir.Left:
+                    anim = animations[2];
+                    break;
+                case Dir.Right:
+                    anim = animations[3];
+                    break;
+                default:
+                    break;
+            }
+            */
+
+            if (isMoving)
+                anim.Update(gameTime);
+            else
+                anim.setFrame(1);
 
             isMoving = false;
 
