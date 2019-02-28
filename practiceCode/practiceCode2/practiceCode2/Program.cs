@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 namespace practiceCode2
 {
 
+
+
+ 
+
     struct House
     {
         public string address;
@@ -37,6 +41,14 @@ namespace practiceCode2
     {
         static void Main(string[] args)
         {
+            Cat myCat = new Cat("Atom", 8);
+            myCat.setName("Gizmo");
+
+            myCat.Age = 5;
+
+            Console.WriteLine(myCat.getName());
+            Console.WriteLine(myCat.Age);
+
 
             House myHouse = new House("789 road Street", 20, 10);
             /*
@@ -61,5 +73,7 @@ namespace practiceCode2
 
             
         }
-    }
+    } 
 }
+
+
