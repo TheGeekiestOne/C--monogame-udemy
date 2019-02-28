@@ -18,6 +18,7 @@ namespace rpg
         private int speed = 800;
         private int radius = 15;
         private Dir direction;
+        private bool collided = false;
 
         public static List<Projectile> projectiles = new List<Projectile>();
 
@@ -25,6 +26,12 @@ namespace rpg
         {
             position = newPos;
             direction = newDir;
+        }
+
+        public bool Collided
+        {
+            get { return collided; }
+            set { collided = value; }
         }
 
         public Vector2 Postion
