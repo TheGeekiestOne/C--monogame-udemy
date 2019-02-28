@@ -80,8 +80,11 @@ namespace rpg
             player.animations[3] = new AnimatedSprite(playerRight, 1, 4);
 
 
-            Enemy.enemies.Add(new Snake(new Vector2(100, 400)));
-            Enemy.enemies.Add(new Eye(new Vector2(300, 450)));
+            //Enemy.enemies.Add(new Snake(new Vector2(100, 400)));
+            //Enemy.enemies.Add(new Eye(new Vector2(300, 450)));
+
+            Obstacle.obstacles.Add(new Tree(new Vector2(500, 100)));
+            Obstacle.obstacles.Add(new Bush(new Vector2(700, 300)));
         }
 
         protected override void UnloadContent()
@@ -116,6 +119,11 @@ namespace rpg
                         en.Health--;
                     }
                 }
+
+                if (Obstacle.didCollide(proj.Postion, proj.Radius))
+                {
+                    proj.Collided = true;
+                }
             }
 
             foreach (Enemy en in Enemy.enemies)
@@ -128,6 +136,10 @@ namespace rpg
                 }
             }
 
+            Projectile.projectiles.RemoveAll(p => p.Collided);
+            Enemy.enemies.RemoveAll(e => e.Health <= 0);
+
+            base.Update(gameTime);
 
         }
 
@@ -157,6 +169,20 @@ namespace rpg
                 }
 
                 spriteBatch.Draw(spriteToDraw, new Vector2(en.Position.X - rad, en.Position.Y - rad), Color.White);
+            }
+
+            foreach (Obstacle o in Obstacle.obstacles)
+            {
+                Texture2D spriteToDraw;
+                if (o.GetType() == typeof(Tree))
+                {
+                    spriteToDraw = tree_Sprite;
+                }
+                else
+                {
+                    spriteToDraw = bush_Sprite;
+                }
+                spriteBatch.Draw(spriteToDraw, o.Position, Color.White);
             }
 
             //spriteBatch.Draw(player_Sprite, player.Position, Color.White);
