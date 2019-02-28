@@ -20,9 +20,22 @@ namespace rpg
         private Dir direction = Dir.Down;
         private bool isMoving = false;
         private KeyboardState kStateOld = Keyboard.GetState();
+        private int radius = 56;
+        private float healthTime = 0f;
 
         public AnimatedSprite anim;
         public AnimatedSprite[] animations = new AnimatedSprite[4];
+
+        public float HealthTimer
+        {
+            get { return healthTime; }
+            set { healthTime = value; }
+        }
+
+        public int Radius
+        {
+            get { return radius; }
+        }
 
         public int Health
         {
@@ -59,6 +72,11 @@ namespace rpg
         {
             KeyboardState kState = Keyboard.GetState();
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (healthTime > 0)
+            {
+                healthTime -= dt;
+            }
 
             anim = animations[(int)direction];
 
