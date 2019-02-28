@@ -17,6 +17,7 @@ namespace Spaceship
         public double timer = 2D;
         public double maxTime = 2D;
         public int nextSpeed = 240;
+        public float totalTime = 0f;
 
         public bool inGame = false; //Main menu
 
@@ -26,6 +27,7 @@ namespace Spaceship
             if (inGame)
             {
                 timer -= gameTime.ElapsedGameTime.TotalSeconds;
+                totalTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             else
             {
@@ -33,6 +35,11 @@ namespace Spaceship
                 if (kState.IsKeyDown(Keys.Enter))
                 {
                     inGame = true;
+                    totalTime = 0f;
+
+                    timer = 2D;
+                    maxTime = 2D;
+                    nextSpeed = 240;
                 }
             }
 

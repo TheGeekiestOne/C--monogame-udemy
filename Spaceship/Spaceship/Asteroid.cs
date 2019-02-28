@@ -17,6 +17,7 @@ namespace Spaceship
         public Vector2 postion;// = new Vector2(600, 300);
         public int speed;
         public int radius = 59;
+        public bool offscreen = false;
 
         static Random rand = new Random();
 

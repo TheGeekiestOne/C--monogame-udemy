@@ -27,23 +27,23 @@ namespace Spaceship
 
             if (gameController.inGame)
             {
-                if (kState.IsKeyDown(Keys.Right))
+                if (kState.IsKeyDown(Keys.Right) && postition.X < 1280)
                 {
                     postition.X += speed * dt; // ++ =>move at 1 pixel at a time 
 
                 }
 
-                if (kState.IsKeyDown(Keys.Left))
+                if (kState.IsKeyDown(Keys.Left) && postition.X > 0)
                 {
                     postition.X -= speed * dt;
                 }
 
-                if (kState.IsKeyDown(Keys.Down))
+                if (kState.IsKeyDown(Keys.Down) && postition.Y < 720)
                 {
                     postition.Y += speed * dt;
                 }
 
-                if (kState.IsKeyDown(Keys.Up))
+                if (kState.IsKeyDown(Keys.Up) && postition.Y > 0)
                 {
                     postition.Y -= speed * dt;
                 }
