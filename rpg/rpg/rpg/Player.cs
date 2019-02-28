@@ -20,6 +20,8 @@ namespace rpg
         private Dir direction = Dir.Down;
         private bool isMoving = false;
 
+        public AnimatedSprite anim;
+
         public int Health
         {
             get
@@ -55,6 +57,8 @@ namespace rpg
         {
             KeyboardState kState = Keyboard.GetState();
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            anim.Update(gameTime);
 
             isMoving = false;
 
