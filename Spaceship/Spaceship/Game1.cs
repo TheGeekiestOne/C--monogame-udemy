@@ -69,7 +69,7 @@ namespace Spaceship
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            player.shipUpdate(gameTime);
+            player.shipUpdate(gameTime, gameController);
             //player.postition.X++;
 
             //testAsteroid.asteroidUpdate(gameTime);
@@ -78,6 +78,15 @@ namespace Spaceship
             for (int i = 0; i < gameController.asteroids.Count; i++)
             {
                 gameController.asteroids[i].asteroidUpdate(gameTime);
+
+                //collison check
+                int sum = gameController.asteroids[i].radius + 28;
+                if (Vector2.Distance(gameController.asteroids[i].postion, player.postition) < sum)
+                {
+                    gameController.inGame = false;
+                    player.postition = Ship.defaultPos;
+                    gameController.asteroids.Clear();
+                }
 
             }
 
@@ -95,6 +104,15 @@ namespace Spaceship
             spriteBatch.Draw(space_Sprite, new Vector2(0, 0), Color.White) ;
             //spriteBatch.Draw(ship_Sprite, player.postition, Color.White);
             spriteBatch.Draw(ship_Sprite, new Vector2(player.postition.X - 34, player.postition.Y - 50), Color.White);
+
+            //Draw main menu
+            if (gameController.inGame == false)
+            {
+                string menuMessage = "Press Enter to Begin!";
+                Vector2 sizeOfText = gameFont.MeasureString(menuMessage);
+
+                spriteBatch.DrawString(gameFont, menuMessage, new Vector2(640 - sizeOfText.X / 2, 240), Color.White);
+            }
 
             //draw test asteroid
             //spriteBatch.Draw(asteroid_Sprite, new Vector2(testAsteroid.postion.X - testAsteroid.radius, testAsteroid.postion.Y - testAsteroid.radius), Color.White);

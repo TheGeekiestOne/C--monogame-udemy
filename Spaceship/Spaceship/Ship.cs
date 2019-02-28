@@ -13,35 +13,40 @@ namespace Spaceship
     class Ship
     {
 
-        public Vector2 postition = new Vector2(100, 100);
+        //public Vector2 postition = new Vector2(100, 100);
         public int speed = 180;
+        static public Vector2 defaultPos = new Vector2(640, 360);
+        public Vector2 postition = defaultPos;
 
-        public void shipUpdate(GameTime gameTime) //void doesnt return anything
+        public void shipUpdate(GameTime gameTime, Controller gameController) //void doesnt return anything
         {
             //postition.Y++;
             KeyboardState kState = Keyboard.GetState();
             //double dt = gameTime.ElapsedGameTime.TotalSeconds;
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (kState.IsKeyDown(Keys.Right))
+            if (gameController.inGame)
             {
-                postition.X += speed * dt; // ++ =>move at 1 pixel at a time 
+                if (kState.IsKeyDown(Keys.Right))
+                {
+                    postition.X += speed * dt; // ++ =>move at 1 pixel at a time 
 
-            }
+                }
 
-            if (kState.IsKeyDown(Keys.Left))
-            {
-                postition.X -= speed * dt;
-            }
+                if (kState.IsKeyDown(Keys.Left))
+                {
+                    postition.X -= speed * dt;
+                }
 
-            if (kState.IsKeyDown(Keys.Down))
-            {
-                postition.Y += speed * dt;
-            }
+                if (kState.IsKeyDown(Keys.Down))
+                {
+                    postition.Y += speed * dt;
+                }
 
-            if (kState.IsKeyDown(Keys.Up))
-            {
-                postition.Y -= speed * dt;
+                if (kState.IsKeyDown(Keys.Up))
+                {
+                    postition.Y -= speed * dt;
+                }
             }
         }
 
