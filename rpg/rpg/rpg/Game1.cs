@@ -91,6 +91,10 @@ namespace rpg
 
             player.Update(gameTime);
 
+            foreach (Projectile proj in Projectile.projectiles)
+            {
+                proj.Update(gameTime);
+            }
 
             base.Update(gameTime);
         }
@@ -99,14 +103,17 @@ namespace rpg
         {
             GraphicsDevice.Clear(Color.ForestGreen);
 
-            player.anim.Draw(spriteBatch, new Vector2(player.Position.X - 48, player.Position.Y - 48);
+            player.anim.Draw(spriteBatch, new Vector2(player.Position.X - 48, player.Position.Y - 48));
 
             spriteBatch.Begin();
 
             //spriteBatch.Draw(player_Sprite, player.Position, Color.White);
+            foreach (Projectile proj in Projectile.projectiles)
+            {
+                spriteBatch.Draw(bullet_Sprite, new Vector2(proj.Postion.X - proj.Radius, proj.Postion.Y - proj.Radius), Color.White);
+            }
 
-
-            spriteBatch.End();
+                spriteBatch.End();
 
 
             base.Draw(gameTime);
