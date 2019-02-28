@@ -4,6 +4,13 @@ using Microsoft.Xna.Framework.Input;
 
 namespace rpg
 {
+    enum Dir
+    {
+        Down,
+        Up,
+        Left,
+        Right
+    }
 
     public class Game1 : Game
     {
@@ -23,6 +30,8 @@ namespace rpg
 
         Texture2D heart_Sprite;
         Texture2D bullet_Sprite;
+
+        Player player = new Player();
 
         public Game1()
         {
@@ -70,6 +79,8 @@ namespace rpg
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            player.Update(gameTime);
+
 
             base.Update(gameTime);
         }
@@ -77,6 +88,13 @@ namespace rpg
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.ForestGreen);
+
+            spriteBatch.Begin();
+
+            spriteBatch.Draw(player_Sprite, player.Position, Color.White);
+
+
+            spriteBatch.End();
 
 
             base.Draw(gameTime);
