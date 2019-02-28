@@ -85,6 +85,7 @@ namespace Spaceship
                 {
                     gameController.inGame = false;
                     player.postition = Ship.defaultPos;
+                    i = gameController.asteroids.Count;
                     gameController.asteroids.Clear();
                 }
 
