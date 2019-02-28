@@ -10,13 +10,30 @@ namespace rpg
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Texture2D player_Sprite;
+        Texture2D playerDown;
+        Texture2D playerUp;
+        Texture2D playerLeft;
+        Texture2D playerRight;
+
+        Texture2D eyeEnemy_Sprite;
+        Texture2D snakeEnemey_Sprite;
+        Texture2D bush_Sprite;
+        Texture2D tree_Sprite;
+
+        Texture2D heart_Sprite;
+        Texture2D bullet_Sprite;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
         }
 
- >
+ 
         protected override void Initialize()
         {
 
@@ -26,6 +43,21 @@ namespace rpg
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            player_Sprite = Content.Load<Texture2D>("Player/player");
+            playerDown = Content.Load<Texture2D>("Player/playerDown");
+            playerUp = Content.Load<Texture2D>("Player/playerUp");
+            playerLeft = Content.Load<Texture2D>("Player/playerLeft");
+            playerRight = Content.Load<Texture2D>("Player/playerRight");
+
+            eyeEnemy_Sprite = Content.Load<Texture2D>("Enemies/eyeEnemy");
+            snakeEnemey_Sprite = Content.Load<Texture2D>("Enemies/snakeEnemy");
+
+            bush_Sprite = Content.Load<Texture2D>("Obstacles/bush");
+            tree_Sprite = Content.Load<Texture2D>("Obstacles/tree");
+
+            heart_Sprite = Content.Load<Texture2D>("Misc/heart");
+            bullet_Sprite = Content.Load<Texture2D>("Misc/bullet");
 
         }
 
@@ -44,7 +76,7 @@ namespace rpg
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.ForestGreen);
 
 
             base.Draw(gameTime);
