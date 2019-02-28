@@ -26,6 +26,13 @@ namespace practiceCode2
         }
     }
 
+    enum Meal
+    {
+        Breakfast,
+        Lunch,
+        Dinner
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -38,8 +45,18 @@ namespace practiceCode2
             myHouse.length = 35;
             */
 
+            //Meal bestMeal = Meal.Dinner;
+            Meal bestMeal = (Meal)0;
+
+
             Console.WriteLine(myHouse.address);
             Console.WriteLine(myHouse.Area());
+
+
+            Console.WriteLine((int)Meal.Breakfast);
+            Console.WriteLine((int)Meal.Lunch);
+            Console.WriteLine((int)Meal.Dinner);
+
             Console.ReadKey();
 
             
