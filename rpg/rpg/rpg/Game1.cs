@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Graphics;
 namespace rpg
@@ -36,6 +37,8 @@ namespace rpg
         TiledMapRenderer mapRenderer;
         TiledMap myMap;
 
+        Camera2D cam;
+
         Player player = new Player();
 
         public Game1()
@@ -51,6 +54,7 @@ namespace rpg
         protected override void Initialize()
         {
             mapRenderer = new TiledMapRenderer(GraphicsDevice);
+            cam = new Camera2D(GraphicsDevice);
 
             base.Initialize();
         }
@@ -91,8 +95,40 @@ namespace rpg
             //Enemy.enemies.Add(new Snake(new Vector2(100, 400)));
             //Enemy.enemies.Add(new Eye(new Vector2(300, 450)));
 
-            Obstacle.obstacles.Add(new Tree(new Vector2(500, 100)));
-            Obstacle.obstacles.Add(new Bush(new Vector2(700, 300)));
+            //Obstacle.obstacles.Add(new Tree(new Vector2(500, 100)));
+            //Obstacle.obstacles.Add(new Bush(new Vector2(700, 300)));
+
+            TiledMapObject[] allEnemies = myMap.GetLayer<TiledMapObjectLayer>("Enemies").Objects;
+            foreach(var en in allEnemies)
+            {
+                string type;
+                en.Properties.TryGetValue("Type", out type);
+                if (type == "Snake")
+                {
+                    Enemy.enemies.Add(new Snake(en.Position));
+
+                }
+                else if (type == "Eye")
+                {
+                    Enemy.enemies.Add(new Eye(en.Position));
+                }
+            }
+
+            TiledMapObject[] allObstacles = myMap.GetLayer<TiledMapObjectLayer>("Obstacles").Objects;
+            foreach (var obj in allObstacles)
+            {
+                string type;
+                obj.Properties.TryGetValue("Type", out type);
+                if (type == "Tree")
+                {
+                    Obstacle.obstacles.Add(new Tree(obj.Position));
+
+                }
+                else if (type == "Bush")
+                {
+                    Obstacle.obstacles.Add(new Bush(obj.Position));
+                }
+            }
         }
 
         protected override void UnloadContent()
@@ -106,6 +142,8 @@ namespace rpg
 
             if (player.Health > 0 )
                 player.Update(gameTime);
+
+            cam.LookAt(player.Position);
 
             foreach (Projectile proj in Projectile.projectiles)
             {
@@ -155,12 +193,16 @@ namespace rpg
         {
             GraphicsDevice.Clear(Color.ForestGreen);
 
-            mapRenderer.Draw(myMap);
+            mapRenderer.Draw(myMap, cam.GetViewMatrix());
+
+
+            spriteBatch.Begin(transformMatrix: cam.GetViewMatrix());
 
             if (player.Health > 0)
+            {
                 player.anim.Draw(spriteBatch, new Vector2(player.Position.X - 48, player.Position.Y - 48));
 
-            spriteBatch.Begin();
+            }
 
             foreach (Enemy en in Enemy.enemies)
             {
@@ -201,12 +243,16 @@ namespace rpg
                 spriteBatch.Draw(bullet_Sprite, new Vector2(proj.Postion.X - proj.Radius, proj.Postion.Y - proj.Radius), Color.White);
             }
 
-            for (int i=0; i < player.Health; i++)
+            spriteBatch.End();
+
+            spriteBatch.Begin();
+
+            for (int i = 0; i < player.Health; i++)
             {
-                spriteBatch.Draw(heart_Sprite, new Vector2(3+ i * 63, 4), Color.White);
+                spriteBatch.Draw(heart_Sprite, new Vector2(3 + i * 63, 4), Color.White);
             }
 
-                spriteBatch.End();
+            spriteBatch.End();
 
 
             base.Draw(gameTime);

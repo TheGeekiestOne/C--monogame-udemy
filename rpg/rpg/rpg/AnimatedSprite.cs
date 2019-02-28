@@ -53,9 +53,9 @@ namespace rpg
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width, height);
 
-            spriteBatch.Begin();
+            //spriteBatch.Begin();
             spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.End();
+            //spriteBatch.End();
         }
 
         public void setFrame(int newFrame)
