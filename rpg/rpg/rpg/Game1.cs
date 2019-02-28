@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using MonoGame.Extended.Tiled;
+using MonoGame.Extended.Tiled.Graphics;
 namespace rpg
 {
     enum Dir
@@ -31,6 +33,9 @@ namespace rpg
         Texture2D heart_Sprite;
         Texture2D bullet_Sprite;
 
+        TiledMapRenderer mapRenderer;
+        TiledMap myMap;
+
         Player player = new Player();
 
         public Game1()
@@ -45,6 +50,7 @@ namespace rpg
  
         protected override void Initialize()
         {
+            mapRenderer = new TiledMapRenderer(GraphicsDevice);
 
             base.Initialize();
         }
@@ -78,6 +84,8 @@ namespace rpg
             player.animations[1] = new AnimatedSprite(playerUp, 1, 4);
             player.animations[2] = new AnimatedSprite(playerLeft, 1, 4);
             player.animations[3] = new AnimatedSprite(playerRight, 1, 4);
+
+            myMap = Content.Load<TiledMap>("Misc/gameMap");
 
 
             //Enemy.enemies.Add(new Snake(new Vector2(100, 400)));
@@ -146,6 +154,8 @@ namespace rpg
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.ForestGreen);
+
+            mapRenderer.Draw(myMap);
 
             if (player.Health > 0)
                 player.anim.Draw(spriteBatch, new Vector2(player.Position.X - 48, player.Position.Y - 48));
