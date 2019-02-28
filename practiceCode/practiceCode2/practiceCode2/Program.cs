@@ -49,6 +49,16 @@ namespace practiceCode2
             Console.WriteLine(myCat.getName());
             Console.WriteLine(myCat.Age);
 
+            Dog myDog = new Dog("MAX!");
+
+            myDog.makeNoise();
+            Console.WriteLine(myDog.name);
+
+            Parrot myParrot = new Parrot();
+
+            myParrot.makeNoise();
+
+
 
             House myHouse = new House("789 road Street", 20, 10);
             /*
