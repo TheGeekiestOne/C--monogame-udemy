@@ -14,7 +14,7 @@ namespace Spaceship
     {
 
         //public Vector2 postition = new Vector2(100, 100);
-        public int speed = 180;
+        public int speed = 200;
         static public Vector2 defaultPos = new Vector2(640, 360);
         public Vector2 postition = defaultPos;
 
@@ -29,7 +29,7 @@ namespace Spaceship
             {
                 if (kState.IsKeyDown(Keys.Right) && postition.X < 1280)
                 {
-                    postition.X += speed * dt; // ++ =>move at 1 pixel at a time 
+                    postition.X += speed * dt + 2; // ++ =>move at 1 pixel at a time 
 
                 }
 
